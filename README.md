@@ -1,0 +1,2 @@
+# fiveshield
+FiveM global ban.
