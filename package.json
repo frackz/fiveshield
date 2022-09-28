@@ -1,0 +1,15 @@
+{
+  "name": "fiveshield",
+  "version": "1.0.0",
+  "description": "FiveM global ban.",
+  "main": "five.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "better-sqlite3": "^7.6.2",
+    "discord.js": "^14.5.0"
+  }
+}
