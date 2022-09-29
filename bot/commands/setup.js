@@ -51,7 +51,7 @@ module.exports = {
                 'UPDATE `servers` SET `log` = ? WHERE `guild` = ?'
             ).run(channel, interaction.guildId)
 
-            return interaction.reply({content: "Log channel is now set to <#"+channel+"> for guild `"+interaction.guildId+"`", ephemeral: true})
+            return interaction.reply({content: "Your log channel is now set to <#"+channel+"> for guild `"+interaction.guildId+"`", ephemeral: true})
         }
 	},
 };
