@@ -13,7 +13,7 @@ module.exports = {
         for (const btn of Object.keys(ButtonList)) {
             const b = ButtonList[btn]
             if (id.includes(btn) && b.contain == true) {
-                require('../buttons/'+b.file).execute(client,five,interaction,discord,config,db);
+                require('../buttons/'+b.file).execute(client,five,interaction,db);
                 return;
             }
         }

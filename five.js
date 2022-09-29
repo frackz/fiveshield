@@ -12,7 +12,8 @@ class FiveShield {
         this.db = new sqlite('fiveshield.sqlite')
         this.client = new discord.Client({partials: ['MESSAGE', 'CHANNEL', 'REACTION'],intents: 32767,disableMentions: 'everyone',})
         const qrs=[
-            'CREATE TABLE IF NOT EXISTS `servers` (`guild` varchar(255) NOT NULL, `key` varchar(255) NOT NULL, `log` varchar(255) NOT NULL)'
+            'CREATE TABLE IF NOT EXISTS `servers` (`guild` varchar(255) NOT NULL, `key` varchar(255) NOT NULL, `log` varchar(255) NOT NULL)',
+            'CREATE TABLE IF NOT EXISTS `reports` (`user` varchar(255) NOT NULL, `enemy` varchar(255) NOT NULL, `reason` varchar(255) NOT NULL, `proof` varchar(255) NOT NULL, `key` varchar(255) DEFAULT NULL)'
         ].forEach(e => this.db.exec(e))
     }
 
