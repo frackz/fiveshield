@@ -45,7 +45,7 @@ module.exports = {
             ).get(interaction.guildId)
 
             if (data == null) {
-                return interaction.reply({content: "Please setup your key first.", ephemeral: true})
+                return interaction.reply({content: "Setup your key first - using `/setup key`", ephemeral: true})
             }
             db.prepare(
                 'UPDATE `servers` SET `log` = ? WHERE `guild` = ?'
