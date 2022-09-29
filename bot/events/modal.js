@@ -1,4 +1,7 @@
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+const { 
+    v1: uuidv1,
+  } = require('uuid');
 
 module.exports = {
 	name: 'interactionCreate',
@@ -12,9 +15,11 @@ module.exports = {
 
             const channel = client.channels.cache.get('1025102467601543209')
 
+            const id = uuidv1()
+
             await db.prepare(
-                'INSERT INTO `reports` (`user`, `enemy`, `reason`, `proof`, `key`) VALUES (?, ?, ?, ?, ?)'
-            ).run(interaction.user.id, identifiers, reason, proof, null)
+                'INSERT INTO `reports` (`user`, `enemy`, `reason`, `proof`, `key`, `id`) VALUES (?, ?, ?, ?, ?, ?)'
+            ).run(interaction.user.id, identifiers, reason, proof, null, id)
 
             interaction.reply({
                 content: "Your report has been sent!",
@@ -22,16 +27,16 @@ module.exports = {
             })
 
             const row = new ActionRowBuilder()
-        .addComponents(
-            new ButtonBuilder()
-                .setCustomId('makereport')
-                .setLabel('✨ Accept')
-                .setStyle(ButtonStyle.Primary),
-            new ButtonBuilder()
-                .setCustomId('reports')
-                .setLabel('🎯 decline')
-                .setStyle(ButtonStyle.Secondary),
-        );
+                .addComponents(
+                    new ButtonBuilder()
+                        .setCustomId('accept*'+id)
+                        .setLabel('✨ Accept')
+                        .setStyle(ButtonStyle.Success),
+                    new ButtonBuilder()
+                        .setCustomId('decline*'+id)
+                        .setLabel('🎯 Decline')
+                        .setStyle(ButtonStyle.Danger),
+                );
 
             channel.send({
                 embeds: [{
@@ -43,9 +48,12 @@ module.exports = {
                         "name": "All data sent with the report:",
                         "value": "Reason: "+reason+"\nIdentifiers: "+identifiers+"\nProof: "+proof
                       }
-                    ]
+                    ],
+                    "footer": {
+                        "text": "ID: "+id
+                    }
                 }],
-                co
+                components: [row]
             })
         }
 	},

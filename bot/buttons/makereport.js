@@ -20,7 +20,7 @@ const proof = new TextInputBuilder()
     .setCustomId('proof')
     .setLabel("What proof do you have? Videoes, pictures etc")
     .setStyle(TextInputStyle.Paragraph)
-    .setMaxLength(100);
+    .setMaxLength(300);
 
 const firstActionRow = new ActionRowBuilder().addComponents(reason);
 const secondActionRow = new ActionRowBuilder().addComponents(identifiers);
